@@ -1,11 +1,11 @@
+import "reflect-metadata";
 import express, { Application } from "express";
-import "dotenv/config"
+import { userRoutes } from "./routes/users.routes";
+import { handleAppErrorMiddleware } from "./middlewares/handleAppError.middleware";
 
-const PORT = process.env.PORT
+export const app: Application = express();
+app.use(express.json());
 
-const app: Application = express()
-app.use(express.json())
+app.use("/users", userRoutes);
 
-app.listen(PORT, async () => {
-    console.log("Server is listening on port: " + PORT)
-})
+app.use(handleAppErrorMiddleware);
