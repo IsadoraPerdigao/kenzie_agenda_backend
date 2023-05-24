@@ -14,4 +14,8 @@ const returnUserSchema = createUserSchema
   })
   .omit({ password: true });
 
-export { createUserSchema, returnUserSchema };
+const updateUserSchema = createUserSchema.deepPartial();
+
+const returnUpdatedUserSchema = returnUserSchema.deepPartial();
+
+export { createUserSchema, returnUserSchema, updateUserSchema, returnUpdatedUserSchema };
