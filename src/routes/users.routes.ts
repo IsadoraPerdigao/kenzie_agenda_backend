@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createUserController } from "../controllers/users.controller";
+import {
+  createUserController,
+  getUserController,
+} from "../controllers/users.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { createUserSchema } from "../schemas/users.schema";
 
@@ -10,5 +13,7 @@ userRoutes.post(
   ensureDataIsValidMiddleware(createUserSchema),
   createUserController
 );
+
+userRoutes.get("/:id", getUserController);
 
 export { userRoutes };
