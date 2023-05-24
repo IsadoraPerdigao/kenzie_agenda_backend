@@ -3,6 +3,7 @@ import { createUserService } from "../services/users/createUser.servie";
 import { getUserService } from "../services/users/getUser.service";
 import { updateUserService } from "../services/users/updateUser.service";
 import { returnUserSchema } from "../schemas/users.schema";
+import { deleteUserService } from "../services/users/deleteUser.service";
 
 const createUserController = async (request: Request, response: Response): Promise<Response> => {
   const newUser = await createUserService(request.body);
@@ -23,4 +24,10 @@ const updateUserController = async (request: Request, response: Response): Promi
   return response.json(newUpdatedUser);
 };
 
-export { createUserController, getUserController, updateUserController };
+const deleteUserController = async (request: Request, response: Response): Promise<Response> => {
+  await deleteUserService(request.params.id);
+
+  return response.status(204).send();
+};
+
+export { createUserController, getUserController, updateUserController, deleteUserController };

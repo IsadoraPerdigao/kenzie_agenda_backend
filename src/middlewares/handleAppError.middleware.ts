@@ -3,11 +3,13 @@ import { AppError } from "../errors/AppError";
 import { ZodError } from "zod";
 
 const handleAppErrorMiddleware = (
-  error: Error,
+  error: any,
   req: Request,
   res: Response,
   _: NextFunction
 ) => {
+
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       message: error.message,
