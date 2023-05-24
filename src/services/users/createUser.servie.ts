@@ -14,4 +14,4 @@ const createUserService = async (userData: userRequest) => {
   return newUser;
 };
 
-export default createUserService;
+export { createUserService };
