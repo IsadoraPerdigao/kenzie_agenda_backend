@@ -2,9 +2,10 @@ import { Router } from "express";
 import {
   createUserController,
   getUserController,
+  updateUserController,
 } from "../controllers/users.controller";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
-import { createUserSchema } from "../schemas/users.schema";
+import { createUserSchema, updateUserSchema } from "../schemas/users.schema";
 
 const userRoutes = Router();
 
@@ -15,5 +16,11 @@ userRoutes.post(
 );
 
 userRoutes.get("/:id", getUserController);
+
+userRoutes.patch(
+  "/:id",
+  ensureDataIsValidMiddleware(updateUserSchema),
+  updateUserController
+);
 
 export { userRoutes };
