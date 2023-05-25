@@ -6,12 +6,21 @@ const createContactSchema = z.object({
   phone: z.string().max(15),
 });
 
-const returnContactSchema = createContactSchema
-  .extend({
-    id: z.string(),
-    createdAt: z.date(),
-  })
+const returnContactSchema = createContactSchema.extend({
+  id: z.string(),
+  createdAt: z.date(),
+});
 
 const manyContactsSchema = returnContactSchema.array();
 
-export { createContactSchema, returnContactSchema, manyContactsSchema };
+const updateContactSchema = createContactSchema.deepPartial();
+
+const returnUpdatedContactSchema = returnContactSchema.deepPartial();
+
+export {
+  createContactSchema,
+  returnContactSchema,
+  manyContactsSchema,
+  updateContactSchema,
+  returnUpdatedContactSchema,
+};
