@@ -9,7 +9,6 @@ const ensureIdIsValidMiddleware = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  console.log("procurando user");
 
   try {
     const userRepository: UserRepo = AppDataSource.getRepository(User);

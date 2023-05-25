@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createContactService } from "../services/contacts/createContact.service";
 import { getAllContactsService } from "../services/contacts/getAllContacts.service";
+import { getContactService } from "../services/contacts/getContact.service";
 
 const createContactController = async (request: Request, response: Response): Promise<Response> => {
   const userId = response.locals.userId;
@@ -16,4 +17,11 @@ const getAllContactsController = async (request: Request, response: Response): P
   return response.json(contactsList);
 };
 
-export { createContactController, getAllContactsController };
+const getContactController = async (request: Request, response: Response): Promise<Response> => {
+    const contactId = request.params.id
+    const contact = await getContactService(contactId)
+
+    return response.json(contact)
+};
+
+export { createContactController, getAllContactsController, getContactController };

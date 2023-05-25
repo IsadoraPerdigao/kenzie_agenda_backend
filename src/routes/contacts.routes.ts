@@ -1,10 +1,20 @@
 import { Router } from "express";
-import { createContactController, getAllContactsController } from "../controllers/contacts.controller";
+import {
+  createContactController,
+  getAllContactsController,
+  getContactController,
+} from "../controllers/contacts.controller";
 import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middlewarw";
+import { ensureContactIdIsValidMiddleware } from "../middlewares/ensureContactIdIsValid.middleware";
 
-const contactRoutes = Router()
+const contactRoutes = Router();
 
-contactRoutes.post("", ensureAuthMiddleware, createContactController)
-contactRoutes.get("", ensureAuthMiddleware, getAllContactsController)
+contactRoutes.post("", ensureAuthMiddleware, createContactController);
+contactRoutes.get("", ensureAuthMiddleware, getAllContactsController);
+contactRoutes.get("/:id",
+  ensureAuthMiddleware,
+  ensureContactIdIsValidMiddleware,
+  getContactController
+);
 
-export { contactRoutes }
+export { contactRoutes };
