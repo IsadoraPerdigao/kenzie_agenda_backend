@@ -30,7 +30,7 @@ const loginService = async (loginData: Login): Promise<string> => {
     process.env.SECRET_KEY!,
     {
       expiresIn: "24h",
-      subject: user.id.toString(),
+      subject: user.id,
     }
   );
 
