@@ -12,4 +12,6 @@ const returnContactSchema = createContactSchema
     createdAt: z.date(),
   })
 
-export { createContactSchema, returnContactSchema };
+const manyContactsSchema = returnContactSchema.array();
+
+export { createContactSchema, returnContactSchema, manyContactsSchema };
