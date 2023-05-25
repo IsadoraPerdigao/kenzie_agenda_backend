@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createContactController,
+  deleteContactController,
   getAllContactsController,
   getContactController,
   updateContactController,
@@ -24,6 +25,13 @@ contactRoutes.patch(
   ensureAuthMiddleware,
   ensureContactIdIsValidMiddleware,
   updateContactController
+);
+
+contactRoutes.delete(
+  "/:id",
+  ensureAuthMiddleware,
+  ensureContactIdIsValidMiddleware,
+  deleteContactController
 );
 
 export { contactRoutes };
