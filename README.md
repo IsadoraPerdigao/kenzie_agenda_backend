@@ -11,8 +11,8 @@
 
 ### **POST/login**
 * Realiza login de usuário cadastrado com os seguintes dados:
-* **email**
-* **senha**
+  * **email**
+  * **senha**
 
 ### **GET/users/:id**
 * Retorna o usuário passado por 'id'.
