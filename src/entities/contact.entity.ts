@@ -15,7 +15,7 @@ export class Contact {
   @Column({ type: "varchar", length: 60 })
   fullName: string;
 
-  @Column({ unique: true, type: "varchar", length: 27 })
+  @Column({ type: "varchar", length: 27 })
   email: string;
 
   @Column({ length: 15 })
@@ -24,6 +24,6 @@ export class Contact {
   @CreateDateColumn()
   createdAt: string | Date;
 
-  @ManyToOne(() => User, { cascade: true })
+  @ManyToOne(() => User, { onDelete: "CASCADE" })
   user: User;
 }
