@@ -17,6 +17,13 @@ const getUserController = async (request: Request, response: Response): Promise<
   return response.json(user);
 };
 
+const getMeController = async (request: Request, response: Response): Promise<Response> => {
+  const user = await getUserService(response.locals.userId);
+  
+  return response.json(user);
+};
+
+
 const updateUserController = async (request: Request, response: Response): Promise<Response> => {
   const updatedUser = await updateUserService(request.body, request.params.id);
   const newUpdatedUser = returnUserSchema.parse(updatedUser);
@@ -30,4 +37,4 @@ const deleteUserController = async (request: Request, response: Response): Promi
   return response.status(204).send();
 };
 
-export { createUserController, getUserController, updateUserController, deleteUserController };
+export { createUserController, getUserController, updateUserController, deleteUserController, getMeController };
